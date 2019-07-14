@@ -126,6 +126,7 @@ function cardCreator(obj) {
 
 	// Add to the dom
 	const entry = document.querySelector('.cards');
+
 	entry.appendChild(newCard);
 }
 
