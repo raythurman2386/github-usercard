@@ -73,59 +73,76 @@ followersArray.forEach((user) => {
 
 */
 
-function cardCreator(obj) {
-	console.log('Creating', obj);
+function cardCreator(object) {
+	const obj = object.data;
+	console.log('Creating', obj.name);
 	// Create the card div
 	let newCard = document.createElement('div');
 	newCard.classList.add('card');
 
 	// Create the image
 	let cardImg = document.createElement('img');
-	cardImg.src = obj.data.avatar_url;
+	cardImg.src = obj.avatar_url;
 
 	// Create the card-info div
 	let cardInfo = document.createElement('div');
 	cardInfo.classList.add('card-info');
 
 	// Card-info content
-	function contentCreator(e, eClass, content) {
+	function contentCreator(o) {
 		let item = document.createElement(e);
 		item.classList.add(eClass);
 		item.textContent = `${eClass}: ${content}`;
 		cardInfo.appendChild(item);
 	}
 
-	let cardName = document.createElement('h3');
-	cardName.classList.add('name');
-	cardName.textContent = `Name: ${obj.data.name}`;
-
-	let userName = document.createElement('p');
-	userName.classList.add('username');
-	userName.textContent = `Username: ${obj.data.login}`;
-
-	let location = document.createElement('p');
-	location.textContent = `Location: ${obj.data.location}`;
-
-	let profile = document.createElement('p');
-	profile.textContent = `Profile: ${obj.data.html_url}`;
-
-	let followers = document.createElement('p');
-	followers.textContent = `Followers: ${obj.data.followers}`;
-
-	let following = document.createElement('p');
-	following.textContent = `Following: ${obj.data.following}`;
-
-	let bio = document.createElement('p');
-	bio.textContent = `Bio: ${obj.data.bio}`;
+	const elements = [
+		{
+			id          : 'cardName',
+			element     : 'h3',
+			classList   : 'name',
+			textContent : `Name: ${obj.name}`,
+		},
+		{
+			id          : 'userName',
+			element     : 'p',
+			classList   : 'username',
+			textContent : `Username: ${obj.login}`,
+		},
+		{
+			id          : 'profile',
+			element     : 'p',
+			classList   : '',
+			textContent : `Profile: ${obj.html_url}`,
+		},
+		{
+			id          : 'followers',
+			element     : 'p',
+			classList   : '',
+			textContent : `Followers: ${obj.followers}`,
+		},
+		{
+			id          : 'following',
+			element     : 'p',
+			classList   : '',
+			textContent : `Following: ${obj.following}`,
+		},
+		{
+			id          : 'cardName',
+			element     : 'h3',
+			classList   : '',
+			textContent : `Bio: ${obj.bio}`,
+		},
+	];
 
 	// Attach to the inner card
-	cardInfo.appendChild(cardName);
-	cardInfo.appendChild(userName);
-	cardInfo.appendChild(location);
-	cardInfo.appendChild(profile);
-	cardInfo.appendChild(followers);
-	cardInfo.appendChild(following);
-	cardInfo.appendChild(bio);
+	// cardInfo.appendChild(cardName);
+	// cardInfo.appendChild(userName);
+	// cardInfo.appendChild(location);
+	// cardInfo.appendChild(profile);
+	// cardInfo.appendChild(followers);
+	// cardInfo.appendChild(following);
+	// cardInfo.appendChild(bio);
 
 	// Attach the items to the main card
 	newCard.appendChild(cardImg);
