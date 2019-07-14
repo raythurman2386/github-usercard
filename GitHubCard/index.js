@@ -5,7 +5,8 @@
 axios
 	.get('https://api.github.com/users/raythurman2386')
 	.then((response) => {
-		console.log(response.data);
+		// create card node
+		return cardCreator(response);
 	})
 	.catch((error) => {
 		console.log('Error: ', error);
@@ -59,6 +60,62 @@ const followersArray = [
 </div>
 
 */
+
+function cardCreator(obj) {
+	console.log('Creating', obj);
+	// Create the card div
+	let newCard = document.createElement('div');
+	newCard.classList.add('card');
+
+	// Create the image
+	let cardImg = document.createElement('img');
+	cardImg.src = obj.data.avatar_url;
+
+	// Create the card-info div
+	let cardInfo = document.createElement('div');
+	cardInfo.classList.add('card-info');
+
+	// Card-info content
+	let cardName = document.createElement('h3');
+	cardName.classList.add('name');
+	cardName.textContent = `Name: ${obj.data.name}`;
+
+	let userName = document.createElement('p');
+	userName.classList.add('username');
+	userName.textContent = `Username: ${obj.data.login}`;
+
+	let location = document.createElement('p');
+	location.textContent = `Location: ${obj.data.location}`;
+
+	let profile = document.createElement('p');
+	profile.textContent = `Profile: ${obj.data.html_url}`;
+
+	let followers = document.createElement('p');
+	followers.textContent = `Followers: ${obj.data.followers}`;
+
+	let following = document.createElement('p');
+	following.textContent = `Following: ${obj.data.following}`;
+
+	let bio = document.createElement('p');
+	bio.textContent = `Bio: ${obj.data.bio}`;
+
+	// Attach to the inner card
+	cardInfo.appendChild(cardName);
+	cardInfo.appendChild(userName);
+	cardInfo.appendChild(location);
+	cardInfo.appendChild(profile);
+	cardInfo.appendChild(followers);
+	cardInfo.appendChild(following);
+	cardInfo.appendChild(bio);
+
+	// Attach the items to the main card
+	newCard.appendChild(cardImg);
+	newCard.appendChild(cardInfo);
+
+	// Add to the dom
+	const entry = document.querySelector('.cards');
+	entry.appendChild(newCard);
+}
 
 /* List of LS Instructors Github username's: 
   tetondan
