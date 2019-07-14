@@ -75,7 +75,7 @@ followersArray.forEach((user) => {
 
 function cardCreator(object) {
 	const obj = object.data;
-	console.log('Creating', obj.name);
+	// console.log('Creating', obj.name);
 	// Create the card div
 	let newCard = document.createElement('div');
 	newCard.classList.add('card');
@@ -87,14 +87,6 @@ function cardCreator(object) {
 	// Create the card-info div
 	let cardInfo = document.createElement('div');
 	cardInfo.classList.add('card-info');
-
-	// Card-info content
-	function contentCreator(o) {
-		let item = document.createElement(o.element);
-		item.classList.add(o.className);
-		item.textContent = o.text;
-		cardInfo.appendChild(item);
-	}
 
 	const elements = [
 		{
@@ -112,32 +104,41 @@ function cardCreator(object) {
 		{
 			id        : 'profile',
 			element   : 'p',
-			className : '',
+			className : 'profile',
 			text      : `Profile: ${obj.html_url}`,
 		},
 		{
 			id        : 'followers',
 			element   : 'p',
-			className : '',
+			className : 'followers',
 			text      : `Followers: ${obj.followers}`,
 		},
 		{
 			id        : 'following',
 			element   : 'p',
-			className : '',
+			className : 'follower',
 			text      : `Following: ${obj.following}`,
 		},
 		{
 			id        : 'cardName',
 			element   : 'h3',
-			className : '',
+			className : 'bio',
 			text      : `Bio: ${obj.bio}`,
 		},
 	];
 
+	// Card-info content
+	const contentCreator = (o) => {
+		// console.log(o.element, 'function');
+		let item = document.createElement(o.element);
+		item.classList.add(o.className);
+		item.textContent = o.text;
+		return cardInfo.appendChild(item);
+	};
+
 	// Loop over elements to create the content
 	elements.forEach((item) => {
-		console.log(item, 'for each');
+		// console.log(item, 'for each');
 		contentCreator(item);
 	});
 
