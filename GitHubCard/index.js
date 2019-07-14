@@ -88,6 +88,13 @@ function cardCreator(obj) {
 	cardInfo.classList.add('card-info');
 
 	// Card-info content
+	function contentCreator(e, eClass, content) {
+		let item = document.createElement(e);
+		item.classList.add(eClass);
+		item.textContent = `${eClass}: ${content}`;
+		cardInfo.appendChild(item);
+	}
+
 	let cardName = document.createElement('h3');
 	cardName.classList.add('name');
 	cardName.textContent = `Name: ${obj.data.name}`;
