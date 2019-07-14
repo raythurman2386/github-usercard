@@ -90,50 +90,56 @@ function cardCreator(object) {
 
 	// Card-info content
 	function contentCreator(o) {
-		let item = document.createElement(e);
-		item.classList.add(eClass);
-		item.textContent = `${eClass}: ${content}`;
+		let item = document.createElement(o.element);
+		item.classList.add(o.className);
+		item.textContent = o.text;
 		cardInfo.appendChild(item);
 	}
 
 	const elements = [
 		{
-			id          : 'cardName',
-			element     : 'h3',
-			classList   : 'name',
-			textContent : `Name: ${obj.name}`,
+			id        : 'cardName',
+			element   : 'h3',
+			className : 'name',
+			text      : `Name: ${obj.name}`,
 		},
 		{
-			id          : 'userName',
-			element     : 'p',
-			classList   : 'username',
-			textContent : `Username: ${obj.login}`,
+			id        : 'userName',
+			element   : 'p',
+			className : 'username',
+			text      : `Username: ${obj.login}`,
 		},
 		{
-			id          : 'profile',
-			element     : 'p',
-			classList   : '',
-			textContent : `Profile: ${obj.html_url}`,
+			id        : 'profile',
+			element   : 'p',
+			className : '',
+			text      : `Profile: ${obj.html_url}`,
 		},
 		{
-			id          : 'followers',
-			element     : 'p',
-			classList   : '',
-			textContent : `Followers: ${obj.followers}`,
+			id        : 'followers',
+			element   : 'p',
+			className : '',
+			text      : `Followers: ${obj.followers}`,
 		},
 		{
-			id          : 'following',
-			element     : 'p',
-			classList   : '',
-			textContent : `Following: ${obj.following}`,
+			id        : 'following',
+			element   : 'p',
+			className : '',
+			text      : `Following: ${obj.following}`,
 		},
 		{
-			id          : 'cardName',
-			element     : 'h3',
-			classList   : '',
-			textContent : `Bio: ${obj.bio}`,
+			id        : 'cardName',
+			element   : 'h3',
+			className : '',
+			text      : `Bio: ${obj.bio}`,
 		},
 	];
+
+	// Loop over elements to create the content
+	elements.forEach((item) => {
+		console.log(item, 'for each');
+		contentCreator(item);
+	});
 
 	// Attach to the inner card
 	// cardInfo.appendChild(cardName);
