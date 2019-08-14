@@ -2,15 +2,20 @@
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
-axios
-	.get('https://api.github.com/users/raythurman2386')
-	.then((response) => {
-		// create card node
-		return cardCreator(response);
-	})
-	.catch((error) => {
-		console.log('Error: ', error);
-	});
+const getData = (user) => {
+	axios
+		.get(`https://api.github.com/users/${user}`)
+		.then((response) => {
+			// create card node
+			return cardCreator(response);
+		})
+		.catch((error) => {
+			console.log('Error: ', error);
+		});
+};
+
+// Get my card
+getData('raythurman2386');
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -33,24 +38,11 @@ axios
           user, and adding that card to the DOM.
 */
 
-const followersArray = [
-	'twilday09',
-	'mikeyjwilliams',
-	'nickdurbin',
-	'tetondan',
-	'dustinmyers',
-];
+const followersArray = [ 'twilday09', 'mikeyjwilliams', 'nickdurbin', 'tetondan', 'dustinmyers' ];
 
+// Get followers cards
 followersArray.forEach((user) => {
-	axios
-		.get(`https://api.github.com/users/${user}`)
-		.then((response) => {
-			// create card node
-			return cardCreator(response);
-		})
-		.catch((error) => {
-			console.log('Error: ', error);
-		});
+	getData(user);
 });
 
 /* Step 3: Create a function that accepts a single object as its only argument,
@@ -90,40 +82,40 @@ function cardCreator(object) {
 
 	const elements = [
 		{
-			id        : 'cardName',
-			element   : 'h3',
-			className : 'name',
-			text      : `Name: ${obj.name}`,
+			id: 'cardName',
+			element: 'h3',
+			className: 'name',
+			text: `Name: ${obj.name}`,
 		},
 		{
-			id        : 'userName',
-			element   : 'p',
-			className : 'username',
-			text      : `Username: ${obj.login}`,
+			id: 'userName',
+			element: 'p',
+			className: 'username',
+			text: `Username: ${obj.login}`,
 		},
 		{
-			id        : 'profile',
-			element   : 'p',
-			className : 'profile',
-			text      : `Profile: ${obj.html_url}`,
+			id: 'profile',
+			element: 'p',
+			className: 'profile',
+			text: `Profile: ${obj.html_url}`,
 		},
 		{
-			id        : 'followers',
-			element   : 'p',
-			className : 'followers',
-			text      : `Followers: ${obj.followers}`,
+			id: 'followers',
+			element: 'p',
+			className: 'followers',
+			text: `Followers: ${obj.followers}`,
 		},
 		{
-			id        : 'following',
-			element   : 'p',
-			className : 'follower',
-			text      : `Following: ${obj.following}`,
+			id: 'following',
+			element: 'p',
+			className: 'follower',
+			text: `Following: ${obj.following}`,
 		},
 		{
-			id        : 'cardName',
-			element   : 'h3',
-			className : 'bio',
-			text      : `Bio: ${obj.bio}`,
+			id: 'cardName',
+			element: 'h3',
+			className: null,
+			text: `Bio: ${obj.bio}`,
 		},
 	];
 
@@ -141,15 +133,6 @@ function cardCreator(object) {
 		// console.log(item, 'for each');
 		contentCreator(item);
 	});
-
-	// Attach to the inner card
-	// cardInfo.appendChild(cardName);
-	// cardInfo.appendChild(userName);
-	// cardInfo.appendChild(location);
-	// cardInfo.appendChild(profile);
-	// cardInfo.appendChild(followers);
-	// cardInfo.appendChild(following);
-	// cardInfo.appendChild(bio);
 
 	// Attach the items to the main card
 	newCard.appendChild(cardImg);
