@@ -41,9 +41,12 @@ getData('raythurman2386');
 const followersArray = [ 'twilday09', 'mikeyjwilliams', 'nickdurbin', 'tetondan', 'dustinmyers' ];
 
 // Get followers cards
-followersArray.forEach((user) => {
-	getData(user);
-});
+setTimeout(
+	followersArray.forEach((user) => {
+		getData(user);
+	}),
+	100,
+);
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
